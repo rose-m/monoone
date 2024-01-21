@@ -1,0 +1,22 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "apiserver_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/rose-m/monoone/apiserver",
+    visibility = ["//visibility:private"],
+    deps = ["@com_github_google_uuid//:uuid"],
+)
+
+go_binary(
+    name = "apiserver",
+    embed = [":apiserver_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "apiserver_test",
+    srcs = ["main_test.go"],
+    embed = [":apiserver_lib"],
+    deps = ["@com_github_stretchr_testify//assert"],
+)

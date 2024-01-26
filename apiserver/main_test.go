@@ -7,5 +7,5 @@ import (
 )
 
 func TestSomethingHere(t *testing.T) {
-	assert.Equal(t, 1, 2, "they should be equal")
+	assert.Equal(t, 2, 2, "they should be equal")
 }

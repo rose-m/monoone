@@ -1,0 +1,15 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_buf//buf:defs.bzl", "buf_lint_test")
+
+proto_library(
+    name = "friendspb_proto",
+    srcs = ["api.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@buf_deps//google/api:api_proto"],
+)
+
+buf_lint_test(
+    name = "friendspb_proto_lint",
+    config = "//:buf.yaml",
+    targets = [":friendspb_proto"],
+)

@@ -1,4 +1,32 @@
-load("@gazelle//:def.bzl", "gazelle")
+load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_binary")
 
-# gazelle:prefix github.com/rose-m/monoone
-gazelle(name = "gazelle")
+gazelle_binary(
+    name = "gazelle-buf",
+    languages = [
+        # Loads the native proto extension
+        "@bazel_gazelle//language/proto:go_default_library",
+        # Loads the Buf extension
+        "@rules_buf//gazelle/buf:buf",
+        # NOTE: This needs to be loaded after the proto language
+    ],
+)
+
+gazelle(
+    name = "gazelle",
+    gazelle = ":gazelle-buf",
+)
+
+exports_files(["buf.yaml"])
+
+gazelle(
+    name = "gazelle-update-repos",
+    args = [
+        "-from_file=go.mod",
+        "-to_macro=deps.bzl%go_dependencies",
+        "--from_file=buf.yaml",
+        "-to_macro=buf_deps.bzl%buf_deps",
+        "-prune",
+    ],
+    command = "update-repos",
+    gazelle = ":gazelle-buf",
+)

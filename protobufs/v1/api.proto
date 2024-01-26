@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package friends;
+option go_package = "github.com/rose-m/monoone/gen/v1/friendspb";
+
+import "google/api/annotations.proto";
+
+service FriendsService {
+  rpc GetFriends(GetFriendsRequest) returns (GetFriendsResponse) {
+    option (google.api.http) = {
+      get : "/v1/friends"
+    };
+  };
+}
+
+message GetFriendsRequest { string user_id = 1; }
+
+message GetFriendsResponse { repeated string friend_ids = 1; }

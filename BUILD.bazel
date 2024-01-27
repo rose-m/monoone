@@ -11,19 +11,26 @@ gazelle_binary(
     ],
 )
 
+# We need this since the default generated @buf_deps//google/api:api_proto dependency just does not exist
+# it somehow is actually called visibility_proto.
+# gazelle:resolve_regexp proto proto google/api/.*\.proto @buf_deps//google/api:visibility_proto
 gazelle(
-    name = "gazelle",
+    name = "gazelle-proto",
     gazelle = ":gazelle-buf",
 )
 
-exports_files(["buf.yaml"])
+# gazelle:prefix github.com/rose-m/monoone
+# gazelle:go_generate_proto false
+gazelle(
+    name = "gazelle",
+)
 
 gazelle(
     name = "gazelle-update-repos",
     args = [
         "-from_file=go.mod",
         "-to_macro=deps.bzl%go_dependencies",
-        "--from_file=buf.yaml",
+        "--from_file=protobufs/buf.yaml",
         "-to_macro=buf_deps.bzl%buf_deps",
         "-prune",
     ],

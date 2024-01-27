@@ -1,0 +1,8 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+proto_library(
+    name = "friends_v1_proto",
+    srcs = ["api.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@buf_deps//google/api:visibility_proto"],
+)

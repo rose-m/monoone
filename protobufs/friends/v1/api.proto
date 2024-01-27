@@ -1,7 +1,6 @@
 syntax = "proto3";
 
-package friends;
-option go_package = "github.com/rose-m/monoone/gen/v1/friendspb";
+package friends.v1;
 
 import "google/api/annotations.proto";
 
@@ -13,6 +12,10 @@ service FriendsService {
   };
 }
 
-message GetFriendsRequest { string user_id = 1; }
+message GetFriendsRequest {
+  string user_id = 1;
+  float latitude = 4;
+  float longitude = 5;
+}
 
 message GetFriendsResponse { repeated string friend_ids = 1; }

@@ -5,7 +5,10 @@ go_library(
     srcs = ["main.go"],
     importpath = "github.com/rose-m/monoone/apiserver",
     visibility = ["//visibility:private"],
-    deps = ["@com_github_google_uuid//:uuid"],
+    deps = [
+        "//gen/proto/go/friends/v1:friends",
+        "@com_github_google_uuid//:uuid",
+    ],
 )
 
 go_binary(

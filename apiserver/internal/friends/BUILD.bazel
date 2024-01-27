@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "friends",
+    srcs = ["server.go"],
+    importpath = "github.com/rose-m/monoone/apiserver/internal/friends",
+    visibility = ["//apiserver:__subpackages__"],
+    deps = ["//gen/proto/go/friends/v1:friends"],
+)

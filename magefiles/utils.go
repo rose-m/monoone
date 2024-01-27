@@ -12,8 +12,9 @@ import (
 )
 
 type cmdOptions struct {
-	args []string
-	dir  string
+	args   []string
+	dir    string
+	stream bool
 }
 
 type cmdOption func(*cmdOptions)
@@ -30,6 +31,12 @@ func withDir(dir string) cmdOption {
 	}
 }
 
+func withStream() cmdOption {
+	return func(o *cmdOptions) {
+		o.stream = true
+	}
+}
+
 func executeCmd(command string, options ...cmdOption) (string, error) {
 	opts := &cmdOptions{}
 	for _, o := range options {
@@ -42,8 +49,10 @@ func executeCmd(command string, options ...cmdOption) (string, error) {
 		cmd.Dir = opts.dir
 	}
 
+	streamOutput := mg.Verbose() || opts.stream
+
 	var b bytes.Buffer
-	if mg.Verbose() {
+	if streamOutput {
 		cmd.Stdout = io.MultiWriter(&b, os.Stdout)
 		cmd.Stderr = io.MultiWriter(&b, os.Stderr)
 	} else {
@@ -52,7 +61,7 @@ func executeCmd(command string, options ...cmdOption) (string, error) {
 	}
 	err := cmd.Run()
 	if err != nil {
-		if !mg.Verbose() {
+		if !streamOutput {
 			fmt.Println("... failed command output:")
 			fmt.Println(b.String())
 		}

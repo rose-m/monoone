@@ -18,3 +18,5 @@ plugins:
       - paths=source_relative
   - plugin: buf.build/grpc-ecosystem/openapiv2
     out: ../gen/proto/openapi
+    opt:
+      - allow_merge=true

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package conversations.v1;
+
+import "conversations/v1/conversation.proto";
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+
+service ConversationService {
+  rpc CreateConversation(CreateConversationRequest)
+      returns (CreateConversationResponse) {
+    option (google.api.http) = {
+      post : "/v1/conversations"
+      body : "*"
+    };
+  }
+}
+
+message CreateConversationRequest {
+  Conversation conversation = 1 [ (google.api.field_behavior) = REQUIRED ];
+}
+
+message CreateConversationResponse {
+  Conversation conversation = 1 [ (google.api.field_behavior) = REQUIRED ];
+}

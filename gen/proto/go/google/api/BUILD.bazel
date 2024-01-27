@@ -4,7 +4,9 @@ go_library(
     name = "api",
     srcs = [
         "annotations.pb.go",
+        "field_behavior.pb.go",
         "http.pb.go",
+        "resource.pb.go",
     ],
     importpath = "github.com/rose-m/monoone/gen/proto/go/google/api",
     visibility = ["//visibility:public"],

@@ -9,21 +9,37 @@ import (
 type Bazel mg.Namespace
 
 func (Bazel) Gazelle() error {
-	_, err := executeCmd("bazel", withArgs("run", "//:gazelle-update-repos"))
+	err := protoGazelle()
+	if err != nil {
+		return err
+	}
+	err = goGazelle()
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func protoGazelle() error {
+	_, err := executeCmd("bazel", withArgs("run", "//:gazelle-update-repos-proto"))
 	if err != nil {
 		return fmt.Errorf("failed to run //:gazelle-update-repos: %w", err)
 	}
-	_, err = executeCmd("bazel", withArgs("run", "//:gazelle-update-repos-proto"))
+	_, err = executeCmd("bazel", withArgs("run", "//:gazelle-proto"))
+	if err != nil {
+		return fmt.Errorf("failed to run //:gazelle-proto: %w", err)
+	}
+	return nil
+}
+
+func goGazelle() error {
+	_, err := executeCmd("bazel", withArgs("run", "//:gazelle-update-repos"))
 	if err != nil {
 		return fmt.Errorf("failed to run //:gazelle-update-repos: %w", err)
 	}
 	_, err = executeCmd("bazel", withArgs("run", "//:gazelle"))
 	if err != nil {
 		return fmt.Errorf("failed to run //:gazelle: %w", err)
-	}
-	_, err = executeCmd("bazel", withArgs("run", "//:gazelle-proto"))
-	if err != nil {
-		return fmt.Errorf("failed to run //:gazelle-proto: %w", err)
 	}
 	return nil
 }

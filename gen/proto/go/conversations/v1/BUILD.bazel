@@ -1,13 +1,14 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
-    name = "friends",
+    name = "conversations",
     srcs = [
-        "friends_service.pb.go",
-        "friends_service.pb.gw.go",
-        "friends_service_grpc.pb.go",
+        "conversation.pb.go",
+        "conversations_service.pb.go",
+        "conversations_service.pb.gw.go",
+        "conversations_service_grpc.pb.go",
     ],
-    importpath = "github.com/rose-m/monoone/gen/proto/go/friends/v1",
+    importpath = "github.com/rose-m/monoone/gen/proto/go/conversations/v1",
     visibility = ["//visibility:public"],
     deps = [
         "//gen/proto/go/google/api",

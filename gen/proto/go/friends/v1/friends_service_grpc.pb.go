@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: friends/v1/api.proto
+// source: friends/v1/friends_service.proto
 
 package friendsv1
 
@@ -105,5 +105,5 @@ var FriendsService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "friends/v1/api.proto",
+	Metadata: "friends/v1/friends_service.proto",
 }

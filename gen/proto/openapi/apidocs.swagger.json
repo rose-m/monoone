@@ -1,10 +1,13 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "friends/v1/api.proto",
+    "title": "google/api/field_behavior.proto",
     "version": "version not set"
   },
   "tags": [
+    {
+      "name": "ConversationService"
+    },
     {
       "name": "FriendsService"
     }
@@ -16,6 +19,38 @@
     "application/json"
   ],
   "paths": {
+    "/v1/conversations": {
+      "post": {
+        "operationId": "ConversationService_CreateConversation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateConversationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateConversationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ConversationService"
+        ]
+      }
+    },
     "/v1/friends": {
       "get": {
         "operationId": "FriendsService_GetFriends",
@@ -37,7 +72,7 @@
           {
             "name": "userId",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string"
           },
           {
@@ -89,6 +124,40 @@
           }
         }
       }
+    },
+    "v1Conversation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateConversationRequest": {
+      "type": "object",
+      "properties": {
+        "conversation": {
+          "$ref": "#/definitions/v1Conversation"
+        }
+      },
+      "required": [
+        "conversation"
+      ]
+    },
+    "v1CreateConversationResponse": {
+      "type": "object",
+      "properties": {
+        "conversation": {
+          "$ref": "#/definitions/v1Conversation"
+        }
+      },
+      "required": [
+        "conversation"
+      ]
     },
     "v1GetFriendsResponse": {
       "type": "object",

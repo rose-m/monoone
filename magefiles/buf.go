@@ -19,5 +19,5 @@ func (Buf) Generate() error {
 		return fmt.Errorf("failed to run buf generate: %w", err)
 	}
 
-	return nil
+	return goGazelle()
 }

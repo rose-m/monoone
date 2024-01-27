@@ -3,6 +3,7 @@ syntax = "proto3";
 package friends.v1;
 
 import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
 
 service FriendsService {
   rpc GetFriends(GetFriendsRequest) returns (GetFriendsResponse) {
@@ -13,7 +14,9 @@ service FriendsService {
 }
 
 message GetFriendsRequest {
-  string user_id = 1;
+  string user_id = 1 [
+    (google.api.field_behavior) = REQUIRED
+  ];
   float latitude = 4;
   float longitude = 5;
 }

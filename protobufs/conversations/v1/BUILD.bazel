@@ -1,0 +1,21 @@
+load("@rules_buf//buf:defs.bzl", "buf_lint_test")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+proto_library(
+    name = "conversations_v1_proto",
+    srcs = [
+        "conversation.proto",
+        "conversations_service.proto",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//conversations/v1:v1_proto",
+        "@buf_deps//google/api:visibility_proto",
+    ],
+)
+
+buf_lint_test(
+    name = "conversations_v1_proto_lint",
+    config = "//protobufs:buf.yaml",
+    targets = [":conversations_v1_proto"],
+)

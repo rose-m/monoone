@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package conversations.v1;
+
+import "google/api/field_behavior.proto";
+import "google/api/resource.proto";
+
+message Conversation {
+  option (google.api.resource) = {
+    type : "conversations.v1.Conversation"
+    pattern : "conversations/{conversation}"
+  };
+
+  string name = 1 [
+    (google.api.resource_reference) = {type : "conversations.v1.Conversation"},
+    (google.api.field_behavior) = OUTPUT_ONLY
+  ];
+
+  string content = 2;
+}

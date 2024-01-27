@@ -11,9 +11,36 @@ import (
 	"github.com/magefile/mage/mg"
 )
 
-func executeCmd(command string, args ...string) (string, error) {
-	fmt.Printf("Executing: %s %s\n", command, strings.Join(args, " "))
-	cmd := exec.Command(command, args...)
+type cmdOptions struct {
+	args []string
+	dir  string
+}
+
+type cmdOption func(*cmdOptions)
+
+func withArgs(args ...string) cmdOption {
+	return func(o *cmdOptions) {
+		o.args = args
+	}
+}
+
+func withDir(dir string) cmdOption {
+	return func(o *cmdOptions) {
+		o.dir = dir
+	}
+}
+
+func executeCmd(command string, options ...cmdOption) (string, error) {
+	opts := &cmdOptions{}
+	for _, o := range options {
+		o(opts)
+	}
+
+	fmt.Printf("Executing: %s %s\n", command, strings.Join(opts.args, " "))
+	cmd := exec.Command(command, opts.args...)
+	if opts.dir != "" {
+		cmd.Dir = opts.dir
+	}
 
 	var b bytes.Buffer
 	if mg.Verbose() {

@@ -1,8 +1,16 @@
+load("@rules_buf//buf:defs.bzl", "buf_lint_test")
 load("@rules_proto//proto:defs.bzl", "proto_library")
 
 proto_library(
     name = "friends_v1_proto",
     srcs = ["api.proto"],
+    strip_import_prefix = "/protobufs",
     visibility = ["//visibility:public"],
     deps = ["@buf_deps//google/api:visibility_proto"],
+)
+
+buf_lint_test(
+    name = "friends_v1_proto_lint",
+    config = "//protobufs:buf.yaml",
+    targets = [":friends_v1_proto"],
 )

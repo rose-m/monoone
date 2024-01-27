@@ -6,4 +6,15 @@ managed:
 plugins:
   - plugin: buf.build/protocolbuffers/go
     out: ../gen/proto/go
-    opt: paths=source_relative
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/grpc/go
+    out: ../gen/grpc/go
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/grpc-ecosystem/gateway
+    out: ../gen/grpc/go
+    opt:
+      - paths=source_relative
+  - plugin: buf.build/grpc-ecosystem/openapiv2
+    out: ../gen/openapi

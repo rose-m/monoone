@@ -36,7 +36,21 @@ This repository is set up with the following overall tooling:
 
 ## Development
 
-### IDE Setup
+### Initial Setup
+
+Ensure the following tools are installed locally:
+1. Bazelisk:
+    ```
+    brew install bazelisk
+    ```
+2. Buf:
+    ```
+    brew install bufbuild/buf/buf
+    ```
+3. Yarn v2 is enabled:
+    ```
+    corepack enable
+    ```
 
 Make sure to install all recommended VSCode plugins when using this repository. Also for doing any changes to the frontend code make sure you have setup
 the Yarn SDKs correctly by running:

@@ -19,3 +19,9 @@ func (Run) Api() error {
 	log.Printf("Finished running apiserver/main.go: %v", err)
 	return nil
 }
+
+func (Run) App() error {
+	_, err := executeCmd("yarn", withArgs("dev"), withDir("packages/app"), withStream())
+	log.Printf("Finished running app: %v", err)
+	return nil
+}

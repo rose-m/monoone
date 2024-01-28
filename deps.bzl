@@ -92,6 +92,12 @@ def go_dependencies():
         version = "v1.2.0",
     )
     go_repository(
+        name = "com_github_rs_cors",
+        importpath = "github.com/rs/cors",
+        sum = "h1:L0uuZVXIKlI1SShY2nhFfo44TYvDPQ1w4oFkUJNfhyo=",
+        version = "v1.10.1",
+    )
+    go_repository(
         name = "com_google_cloud_go_compute",
         importpath = "cloud.google.com/go/compute",
         sum = "h1:6sVlXXBmbd7jNX0Ipq0trII3e4n1/MsADLK6a+aiVlk=",

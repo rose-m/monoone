@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "monoone",
+  "packageManager": "yarn@4.0.2",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

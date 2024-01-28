@@ -1,0 +1,16 @@
+{
+    "name": "@monoone/api",
+    "exports": {
+        "types": "./dist/api.d.ts",
+        "import": "./dist/api.js"
+    },
+    "main": "./dist/api.js",
+    "types": "./dist/api.d.ts",
+    "scripts": {
+        "clean": "rimraf dist *.tsbuildinfo"
+    },
+    "devDependencies": {
+        "rimraf": "^5.0.5",
+        "typescript": "^5.3.3"
+    }
+}

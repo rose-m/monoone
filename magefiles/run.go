@@ -9,7 +9,7 @@ import (
 type Run mg.Namespace
 
 func (Run) Gateway() error {
-	_, err := executeCmd("go", withArgs("run", "gateway/main.go"), withStream())
+	_, err := executeCmd("go", withArgs("run", "gateway/main.go", "--dev"), withStream())
 	log.Printf("Finished running gateway/main.go: %v", err)
 	return nil
 }

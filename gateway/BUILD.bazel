@@ -8,6 +8,7 @@ go_library(
     deps = [
         "//gen/proto/go/friends/v1:friends",
         "@com_github_grpc_ecosystem_grpc_gateway_v2//runtime",
+        "@com_github_rs_cors//:cors",
         "@org_golang_google_grpc//:go_default_library",
         "@org_golang_google_grpc//credentials/insecure",
     ],

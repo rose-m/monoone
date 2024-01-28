@@ -24,6 +24,7 @@ export interface RpcStatus {
 export interface V1Conversation {
   name?: string;
   content?: string;
+  languageCode?: string;
 }
 
 export interface V1CreateConversationRequest {

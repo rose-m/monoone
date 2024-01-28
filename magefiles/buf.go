@@ -19,5 +19,10 @@ func (Buf) Generate() error {
 		return fmt.Errorf("failed to run buf generate: %w", err)
 	}
 
+	_, err = executeCmd("yarn", withArgs("generate:swagger"))
+	if err != nil {
+		return fmt.Errorf("failed to run yarn generate:swagger: %w", err)
+	}
+
 	return goGazelle()
 }

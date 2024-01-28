@@ -17,4 +17,6 @@ message Conversation {
   ];
 
   string content = 2;
+
+  string language_code = 3;
 }

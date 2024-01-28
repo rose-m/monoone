@@ -134,6 +134,9 @@
         },
         "content": {
           "type": "string"
+        },
+        "languageCode": {
+          "type": "string"
         }
       }
     },

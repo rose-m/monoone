@@ -5,7 +5,11 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "generate:swagger": "swagger-typescript-api -p ./gen/proto/openapi/apidocs.swagger.json -o ./packages/api/src -n api.ts"
+  },
   "devDependencies": {
+    "swagger-typescript-api": "^13.0.3",
     "typescript": "^5.3.3"
   }
 }

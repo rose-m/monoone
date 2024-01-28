@@ -85,6 +85,16 @@ mage bazel:gazelle
 ```
 to ensure that all Bazel build files are up-to-date.
 
+When adding new dependencies for Go, just add the dependency as usual:
+```
+go get <dependency>
+```
+Afterwards just make sure to run:
+```
+mage bazel:gazelle
+```
+This will also automatically run `go mod tidy`.
+
 ### Frontend
 
 We use Yarn workspaces to have multiple packages in this repository. The [packages/api](/packages/api/) package is purely to contain the
